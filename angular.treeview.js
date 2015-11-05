@@ -49,8 +49,8 @@
 				var template =
 					'<ul>' +
 						'<li data-ng-repeat="node in ' + treeModel + '">' +
-							'<i class="fa fa-minus-square-o" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-							'<i class="fa fa-plus-square-o" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+							'<i class="fa fa-plus-square-o" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+							'<i class="fa fa-minus-square-o" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
 							'<i ng-class="node.icon" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
 							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node.' + nodeLabel + '}}</span>' +
 							'<div data-ng-hide="node.collapsed" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + '></div>' +
@@ -77,7 +77,7 @@
 						//if node label clicks,
 						scope[treeId].selectNodeLabel = scope[treeId].selectNodeLabel || function( selectedNode ){
 
-							if (scope[treeId].currentNode.children.length > 0) {
+							if (selectedNode.children.length > 0) {
 								// Collapse if there are children
 								selectedNode.collapsed = !selectedNode.collapsed;
 							} else {
