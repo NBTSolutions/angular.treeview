@@ -45,13 +45,14 @@
 				var nodeChildren = attrs.nodeChildren || 'children';
 
 				//tree template
+				//make sure awesome front is installed
 				var template =
 					'<ul>' +
 						'<li data-ng-repeat="node in ' + treeModel + '">' +
-							'<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
-							'<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+							'<i class="fa fa-minus-square-o" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
+							'<i class="fa fa-plus-square-o" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
 							'<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
-							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)" data-ng-click="' + treeId + '.selectNodeHead(node)">{{node.' + nodeLabel + '}}</span>' +
+							'<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node.' + nodeLabel + '}}</span>' +
 							'<div data-ng-hide="node.collapsed" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + '></div>' +
 						'</li>' +
 					'</ul>';
@@ -76,16 +77,18 @@
 						//if node label clicks,
 						scope[treeId].selectNodeLabel = scope[treeId].selectNodeLabel || function( selectedNode ){
 
-							//remove highlight from previous node
-							if( scope[treeId].currentNode && scope[treeId].currentNode.selected ) {
-								scope[treeId].currentNode.selected = undefined;
+							if (scope[treeId].currentNode.children.length > 0) {
+								// Collapse if there are children
+								selectedNode.collapsed = !selectedNode.collapsed;
+							} else {
+								//remove highlight from previous node
+								if( scope[treeId].currentNode.selected ) {
+									scope[treeId].currentNode.selected = undefined;
+								}
+
+								//set highlight to selected node
+								selectedNode.selected = 'selected';
 							}
-
-							//set highlight to selected node
-							selectedNode.selected = 'selected';
-
-							//set currentNode
-							scope[treeId].currentNode = selectedNode;
 						};
 					}
 
