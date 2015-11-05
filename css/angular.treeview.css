@@ -16,7 +16,7 @@ div[data-angular-treeview] {
 div[data-tree-model] ul {
   margin: 0;
   padding: 0;
-  list-style: none; 
+  list-style: none;
   border: none;
   overflow: hidden;
 }
@@ -33,6 +33,5 @@ div[data-tree-model] li i, div[data-tree-model] li span {
 
 div[data-tree-model] li .selected {
   background-color: #aaddff;
-  font-weight: bold;
   padding: 1px 5px;
 }
