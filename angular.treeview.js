@@ -82,7 +82,8 @@
 								selectedNode.collapsed = !selectedNode.collapsed;
 							} else {
 								//remove highlight from previous node
-								if( scope[treeId].currentNode.selected ) {
+								if( scope[treeId].currentNode &&
+									scope[treeId].currentNode.selected ) {
 									scope[treeId].currentNode.selected = undefined;
 								}
 
