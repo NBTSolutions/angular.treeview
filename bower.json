@@ -1,0 +1,11 @@
+{
+  "name": "angular.treeview",
+  "version": "1.0.0",
+  "main": [
+    "./angular.treeview.js",
+    "./css/angular.treeview.css"
+  ],
+  "dependencies": {
+    "angular": "~1.2.7"
+  }
+}
